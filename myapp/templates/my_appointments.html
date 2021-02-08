@@ -1,0 +1,76 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <SCRIPT type="text/javascript">
+        window.history.forward();
+        function noBack() { window.history.forward(); }
+    </SCRIPT>
+    </HEAD>
+    <BODY onload="noBack();" 
+        onpageshow="if (event.persisted) noBack();" onunload="">
+</head>
+<br><br><br>
+<body>
+    <!-- about section -->
+	<section class="about text-center" id="about">
+		<div class="container">
+			<div class="row">
+				<h2>View Appointments</h2>
+				
+				{% for i in appointments %}
+				<div class="col-md-4 col-sm-6" style="margin-bottom: 50px;">
+					<div class="single-about-detail clearfix">
+						
+							<div class="about-details">
+								<div class="pentagon-text">
+									<h1>{{forloop.counter}}</h1>
+								</div>
+								<h3>Patient Name: {{i.patient.fname}} {{i.patient.lname}}</h3>
+								<p>Doctor Name : {{i.doctor.fname}}{{i.doctor.lname}}</p>								
+								{% if i.reason_for_cancel %}
+									<p>Reason For Cancel : {{i.reason_for_cancel}}</p>
+								{% endif %}
+								<p>Date : {{i.appointment_date}}</p>
+								<p>Time : {{i.appointment_time}}</p>
+								<p>Status : {{i.status}}</p>
+							</div>
+						</a>
+					</div>
+					{% if i.status == 'pending' %}
+						
+						<input type="button" value="Pending" class="btn btn-danger"
+						style="padding: 20px 44px;font-size: 24px; width: 360px;" disabled="disabled"> 
+					{% elif i.status == 'cancelled' %}
+						<input type="button" value="Cnacelled" class="btn btn-danger"
+							style="padding: 20px 44px;font-size: 24px; width: 360px;" disabled="disabled">
+					{% else %}						
+						<input type="button" value="Visited" class="btn btn-danger"
+						style="padding: 20px 44px;font-size: 24px; width: 360px;" disabled="disabled">
+					{% endif %}
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+    </section><!-- end of about section -->
+    
+    <!-- footer starts here -->
+	<footer class="footer clearfix">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-6 footer-para">
+					<p>&copy;Mostafizur All right reserved</p>
+				</div>
+				<div class="col-xs-6 text-right">
+					<a href=""><i class="fa fa-facebook"></i></a>
+					<a href=""><i class="fa fa-twitter"></i></a>
+					<a href=""><i class="fa fa-skype"></i></a>
+				</div>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>
+{% endblock %}

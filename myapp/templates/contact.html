@@ -1,0 +1,81 @@
+{% extends 'header.html' %}
+{% load static% }
+{% block content %}
+<html>
+    <body>
+    <head>
+        <style type ="text/css">
+            table, td, th{
+            padding: 10px;
+        }  
+    </style>
+	</head>
+	<br><br><br><br><br>
+	<section class="about text-center" id="about">
+		<div class="container">
+			<div class="row">
+				<h2>Contact</h2>
+			</div>
+		</div>
+	</section>
+	
+<center>
+	<h3>
+		{% if msg %}
+			{{msg}}
+		{% endif %}
+	</h3>
+        <font size="5px">
+    <form name="contact" method="post" action="{% url 'contact' %}">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" name="name" class="from-control from-control-lg" required="required"></td>
+            </tr>
+            
+            <tr>
+                <td>Email</td>
+                <td><input type="text" name="email" class="from-control from-control-lg" required="required"></td>
+            </tr>
+            <tr>
+                <td>Mobile</td>
+                <td><input type="text" name="mobile" class="from-control from-control-lg" required="required"></td>
+            </tr>
+            <tr>
+				<td>Remarks</td>
+				<td><textarea rows="5" cols="22" name="remarks"></textarea></td>
+			</tr>
+        </table>
+        <tr>
+            <td colspan="2" align="center"></td>
+            <input type="submit" value="Submit" class="btn btn-primary">
+        </tr>
+	</font>
+</center>
+</form>
+	<hr>
+	{% for i in contacts %}
+		<h4><p><b>Name : {{i.name}}</b></p>
+		<p><b>Remarks : {{i.remarks}}</b></p></h4>
+		<hr>
+	{% endfor %}
+	<br><br>
+    <!-- footer starts here -->
+	<footer class="footer clearfix">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-6 footer-para">
+					<p>&copy;Mostafizur All right reserved</p>
+				</div>
+				<div class="col-xs-6 text-right">
+					<a href=""><i class="fa fa-facebook"></i></a>
+					<a href=""><i class="fa fa-twitter"></i></a>
+					<a href=""><i class="fa fa-skype"></i></a>
+				</div>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>
+{% endblock %}

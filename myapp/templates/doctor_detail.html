@@ -1,0 +1,75 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <SCRIPT type="text/javascript">
+		window.history.forward();
+		function noBack() { window.history.forward(); }
+	</SCRIPT>
+	</HEAD>
+	<BODY onload="noBack();" 
+		onpageshow="if (event.persisted) noBack();" onunload="">
+</head>
+<br><br><br>
+<body>
+    <!-- about section -->
+	<section class="about text-center" id="about">
+		<div class="container">
+			<div class="row">
+				<h2>Doctor Details</h2>
+				<div class="col-md-4 col-sm-6">
+					<div class="single-about-detail clearfix">
+						<div class="about-img">
+							<img class="img-responsive" src="{{doctor.doctor_image.url}}" alt="">
+						</div>
+						
+							<div class="about-details">
+								<div class="pentagon-text">
+									<h1>{{doctor.specialist|slice:":1"}}</h1>
+								</div>
+                                <h3>{{doctor.specialist}}</h3>
+                                <p style="color: white; text-align: left">
+                                    Education&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;{{doctor.degree}}<br>
+                                    Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;{{doctor.fname}} {{doctor.lname}}<br>
+                                    Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;{{doctor.address}}<br>
+                                    Visiting Hours&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;{{doctor.time_slot}}<br>
+									Consulting Charge&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;{{doctor.consulting_charge}}</p>
+									{% if request.session.email %}
+										<a href="{% url 'book_appointment' pk=doctor.pk %}"><input type="button" value="Book Appointment" class="btn btn-danger"
+										style="padding: 20px 44px;font-size: 24px; width: 360px;"></a>
+									{% else %}
+										<a href="{% url 'login' %}"><input type="button" value="Login To Book Appointment" class="btn btn-danger"
+										style="padding: 20px 44px;font-size: 24px; width: 360px;"></a>
+									{% endif %}
+                                
+                                
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </section><!-- end of about section -->
+    
+    <!-- footer starts here -->
+	<footer class="footer clearfix">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-6 footer-para">
+					<p>&copy;Mostafizur All right reserved</p>
+				</div>
+				<div class="col-xs-6 text-right">
+					<a href=""><i class="fa fa-facebook"></i></a>
+					<a href=""><i class="fa fa-twitter"></i></a>
+					<a href=""><i class="fa fa-skype"></i></a>
+				</div>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>
+{% endblock %}

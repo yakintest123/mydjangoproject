@@ -1,0 +1,62 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <SCRIPT type="text/javascript">
+		window.history.forward();
+		function noBack() { window.history.forward(); }
+	</SCRIPT>
+	</HEAD>
+	<BODY onload="noBack();" 
+		onpageshow="if (event.persisted) noBack();" onunload="">
+</head>
+<br><br><br>
+<body>
+    <!-- about section -->
+	<section class="about text-center" id="about">
+		<div class="container">
+			<div class="row">
+				<h2>about us</h2>
+				<h4>Hear you can find different type of doctors online</h4>
+				{% for i in doctors %}
+				<div class="col-md-4 col-sm-6">
+					<div class="single-about-detail clearfix">
+						<div class="about-img">
+							<img class="img-responsive" src="{{i.doctor_image.url}}" alt="">
+						</div>
+						<a href="{% url 'doctor_detail' pk=i.pk %}">
+							<div class="about-details">
+								<div class="pentagon-text">
+									<h1>{{i.specialist|slice:":1"}}</h1>
+								</div>
+								<h3>{{i.specialist}}</h3>
+								<p>{{i.address}}</p>
+							</div>
+						</a>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+    </section><!-- end of about section -->
+    
+    <!-- footer starts here -->
+	<footer class="footer clearfix">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-6 footer-para">
+					<p>&copy;Mostafizur All right reserved</p>
+				</div>
+				<div class="col-xs-6 text-right">
+					<a href=""><i class="fa fa-facebook"></i></a>
+					<a href=""><i class="fa fa-twitter"></i></a>
+					<a href=""><i class="fa fa-skype"></i></a>
+				</div>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>
+{% endblock %}

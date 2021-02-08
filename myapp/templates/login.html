@@ -1,0 +1,83 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<html>
+    <body>
+    <head>
+        <SCRIPT type="text/javascript">
+            window.history.forward();
+            function noBack() { window.history.forward(); }
+        </SCRIPT>
+        </HEAD>
+        <BODY onload="noBack();" 
+            onpageshow="if (event.persisted) noBack();" onunload="">
+        <style type ="text/css">
+            table, td, th{
+            padding: 5px;
+        }  
+    </style>
+    </head>
+    <br><br><br><br><br>
+    <section class="about text-center" id="about">
+		<div class="container">
+			<div class="row">
+				<h2>Login</h2>
+			</div>
+		</div>
+	</section>
+<center>
+    <h3>
+		{% if msg %}
+			{{msg}}
+		{% endif %}
+	</h3>
+        <font size="5px">
+    <form name="login" method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>User Type</td>
+                <td>
+                    <input type="radio" name="usertype" value="patient" required="required">Patient &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="usertype" value="doctor" required="required">Doctor
+                </td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="text" name="email" class="from-control from-control-lg"></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" name="password" class="from-control from-control-lg"></td>
+            </tr>
+        <tr>
+            <td><input type="submit" value="Login" class="btn btn-primary"></td>
+            <td>
+                <a href="{% url 'forgot_password' %}" style="color:#4a4a4a;">
+                <input type="button" value="Forgot Password" class="btn btn-primary"></a>
+            </td>
+        </tr>
+    </font>
+        </table>
+    </form>
+</center>
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<!-- footer starts here -->
+<footer class="footer clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 footer-para">
+                <p>&copy;Mostafizur All right reserved</p>
+            </div>
+            <div class="col-xs-6 text-right">
+                <a href=""><i class="fa fa-facebook"></i></a>
+                <a href=""><i class="fa fa-twitter"></i></a>
+                <a href=""><i class="fa fa-skype"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
+{% endblock %}

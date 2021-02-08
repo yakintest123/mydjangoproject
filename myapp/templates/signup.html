@@ -1,0 +1,82 @@
+{% extends 'header.html' %}
+{% block content %}
+<html>
+    <body>
+    <head>
+        <style type ="text/css">
+            table, td, th{
+            padding: 5px;
+        }  
+    </style>
+
+    </head>
+    <br><br><br><br><br>
+    <section class="about text-center" id="about">
+		<div class="container">
+			<div class="row">
+				<h2>SignUP</h2>
+			</div>
+		</div>
+	</section>
+<center>
+    <h3>
+		{% if msg %}
+			{{msg}}
+		{% endif %}
+	</h3>
+        <font size="5px">
+    <form name="signup" method="post" action="{% url 'signup' %}">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>First Name</td>
+                <td><input type="text" name="fname" class="from-control from-control-lg" required="required"></td>
+            </tr>
+            <tr>
+                <td>Last Name</td>
+                <td><input type="text" name="lname" class="from-control from-control-lg" required="required"></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="text" name="email" class="from-control from-control-lg" required="required"></td>
+            </tr>
+            <tr>
+                <td>Mobile</td>
+                <td><input type="text" name="mobile" class="from-control from-control-lg" required="required"></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" name="password" class="from-control from-control-lg" required="required"></td>
+            </tr>
+            <tr>
+                <td>Confirm Password</td>
+                <td><input type="password" name="cpassword" class="from-control from-control-lg" required="required"></td>
+            </tr>
+        </table>
+        <br>
+        <tr>
+            <td colspan="2" align="center"></td>
+            <input type="submit" value="Signup" class="btn btn-primary">
+        </tr>
+    </font>
+    </form>
+</center>
+<br><br>
+<!-- footer starts here -->
+<footer class="footer clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 footer-para">
+                <p>&copy;Mostafizur All right reserved</p>
+            </div>
+            <div class="col-xs-6 text-right">
+                <a href=""><i class="fa fa-facebook"></i></a>
+                <a href=""><i class="fa fa-twitter"></i></a>
+                <a href=""><i class="fa fa-skype"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
+{% endblock %}

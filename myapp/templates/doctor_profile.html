@@ -1,0 +1,113 @@
+{% extends 'doctor_header.html' %}
+{% load static %}
+{% block content %}
+<html>
+    <body>
+    <head>
+        <SCRIPT type="text/javascript">
+            window.history.forward();
+            function noBack() { window.history.forward(); }
+        </SCRIPT>
+        </HEAD>
+        <BODY onload="noBack();" 
+            onpageshow="if (event.persisted) noBack();" onunload="">
+        <style type ="text/css">
+            table, td, th{
+            padding: 5px;
+        }  
+    </style>
+    </head>
+    <br><br><br><br><br>
+    <section class="about text-center" id="about">
+		<div class="container">
+			<div class="row">
+				<h2>Doctor Profile</h2>
+			</div>
+		</div>
+	</section>
+<center>
+    <h3>
+		{% if msg %}
+			{{msg}}
+		{% endif %}
+	</h3>
+<font size="5px">
+    <form name="doctor_profile" method="post" action="{% url 'doctor_profile' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>            
+            <tr>
+                <td>First Name</td>
+                <td><input type="text" name="fname" class="from-control from-control-lg" readonly="readonly" 
+                    value="{{doctor.fname}}"></td>
+            </tr>
+            <tr>
+                <td>Last Name</td>
+                <td><input type="text" name="lname" class="from-control from-control-lg" readonly="readonly" 
+                    value="{{doctor.lname}}"></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="text" name="email" class="from-control from-control-lg" readonly="readonly" 
+                    value="{{doctor.email}}"></td>
+            </tr>
+            <tr>
+                <td>Mobile</td>
+                <td><input type="text" name="mobile" class="from-control from-control-lg" readonly="readonly" 
+                    value="{{doctor.mobile}}"></td>
+            </tr>
+            <tr>
+                <td>Speciality</td>
+                <td><input type="text" name="specialist" class="from-control from-control-lg" value="{{doctor.specialist}}" required="required"></td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td><textarea rows="5" cols="22" name="address" class="from-control from-control-lg" required="required">{{doctor.address}}</textarea>></td>
+            </tr>
+            <tr>
+                <td>Degree</td>
+                <td><input type="text" name="degree" class="from-control from-control-lg" value="{{doctor.degree}}" required="required"></td>
+            </tr>
+            <tr>
+                <td>Consulting Charge</td>
+                <td><input type="text" name="consulting_charge" class="from-control from-control-lg" value="{{doctor.consulting_charge}}" required="required"></td>
+            </tr>
+            <tr>
+                <td>Time Slot</td>
+                <td><input type="text" name="time_slot" class="from-control from-control-lg" value="{{doctor.time_slot}}" required="required"></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <img src="{{doctor.doctor_image.url}}" width="100px" height="100px">
+                </td>
+            </tr>
+            <tr>
+                <td>Doctor Image</td>
+                <td><input type="file" name="doctor_image" class="from-control from-control-lg"></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" value="Update Profile" class="btn btn-primary"></td>
+            </tr>
+        </table>
+    </form>
+</font> 
+</center>
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<!-- footer starts here -->
+<footer class="footer clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 footer-para">
+                <p>&copy;Mostafizur All right reserved</p>
+            </div>
+            <div class="col-xs-6 text-right">
+                <a href=""><i class="fa fa-facebook"></i></a>
+                <a href=""><i class="fa fa-twitter"></i></a>
+                <a href=""><i class="fa fa-skype"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
+{% endblock %}

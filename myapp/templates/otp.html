@@ -1,0 +1,66 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<html>
+    <body>
+    <head>
+        <style type ="text/css">
+            table, td, th{
+            padding: 5px;
+        }  
+    </style>
+    </head>
+    <br><br><br><br><br>
+    <section class="about text-center" id="about">
+		<div class="container">
+			<div class="row">
+				<h2>Enter OTP</h2>
+			</div>
+		</div>
+	</section>
+<center>
+    <h3>
+		{% if msg %}
+			{{msg}}
+		{% endif %}
+	</h3>
+        <font size="5px">
+    <form name="otp" method="post" action="{% url 'verify_otp' %}">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td><input type="hidden" name="otp" value="{{otp}}"></td>
+                <td><input type="hidden" name="email" value="{{email}}"></td>
+            </tr>
+            
+            <tr>
+                <td>Enter OTP</td>
+                <td><input type="password" name="uotp" class="from-control from-control-lg" required="required"></td>
+            </tr>
+            <tr>
+            <td colspan="2" align="center"><input type="submit" value="Verify" class="btn btn-primary"></td>
+            </tr>
+    </font>
+        </table>
+    </form>
+</center>
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<!-- footer starts here -->
+<footer class="footer clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 footer-para">
+                <p>&copy;Mostafizur All right reserved</p>
+            </div>
+            <div class="col-xs-6 text-right">
+                <a href=""><i class="fa fa-facebook"></i></a>
+                <a href=""><i class="fa fa-twitter"></i></a>
+                <a href=""><i class="fa fa-skype"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
+{% endblock %}
